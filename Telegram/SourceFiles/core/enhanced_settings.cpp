@@ -406,3 +406,4 @@ namespace EnhancedSettings {
 	}
 
 } // namespace EnhancedSettings
+
