@@ -471,3 +471,4 @@ parts:
     after:
       - ffmpeg
       - mozjpeg
+
