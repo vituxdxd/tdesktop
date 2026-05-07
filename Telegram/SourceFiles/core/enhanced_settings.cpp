@@ -309,7 +309,7 @@ namespace EnhancedSettings {
 		settings.insert(qsl("disable_link_warning"), false);
 		settings.insert(qsl("blocked_user_spoiler_mode"), false);
 		settings.insert(qsl("disable_premium_animation"), false);
-		settings.insert(qsl("disable_global_search"), false);
+		settings.insert(qsl("disable_global_search"), true);
 		settings.insert(qsl("show_group_sender_avatar"), false);
 		settings.insert(qsl("show_seconds"), false);
 		settings.insert(qsl("show_json"), false);

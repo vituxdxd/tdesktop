@@ -476,8 +476,6 @@ void Manager::fillDefaults() {
 	set(u"ctrl+l"_q, Command::Lock);
 	set(u"ctrl+m"_q, Command::Minimize);
 	set(u"ctrl+q"_q, Command::Quit);
-	set(qsl("ctrl+t"), Command::GlobalSearch);
-
 	set(u"media play"_q, Command::MediaPlay);
 	set(u"media pause"_q, Command::MediaPause);
 	set(u"toggle media play/pause"_q, Command::MediaPlayPause);
@@ -526,8 +524,6 @@ void Manager::fillDefaults() {
 	set(u"ctrl+0"_q, Command::ChatSelf);
 
 	set(u"ctrl+9"_q, Command::ShowArchive);
-	set(u"ctrl+j"_q, Command::ShowContacts);
-
 	set(u"ctrl+r"_q, Command::ReadChat);
 
 	set(u"ctrl+\\"_q, Command::ShowChatMenu);

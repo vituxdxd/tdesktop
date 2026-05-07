@@ -734,34 +734,6 @@ void BuildSecuritySection(
 		});
 	}
 
-	auto blockedCount = rpl::combine(
-		session->api().blockedPeers().slice(
-		) | rpl::map([](const Api::BlockedPeers::Slice &data) {
-			return data.total;
-		}),
-		tr::lng_settings_no_blocked_users()
-	) | rpl::map([](int count, const QString &none) {
-		return count ? QString::number(count) : none;
-	});
-
-	builder.addButton({
-		.id = u"security/blocked"_q,
-		.title = tr::lng_settings_blocked_users(),
-		.icon = { &st::menuIconBlock },
-		.label = std::move(blockedCount),
-		.onClick = [=] {
-			showOther(BlockedPeersId());
-		},
-		.keywords = { u"blocked"_q, u"ban"_q },
-	});
-
-	builder.add([session, updateTrigger = rpl::duplicate(updateTrigger)](const WidgetContext &ctx) mutable {
-		std::move(updateTrigger) | rpl::on_next([=] {
-			session->api().blockedPeers().reload();
-		}, ctx.container->lifetime());
-		return SectionBuilder::WidgetToAdd{};
-	});
-
 	auto websitesCount = session->api().websites().totalValue();
 	auto websitesShown = rpl::duplicate(websitesCount) | rpl::map(
 		rpl::mappers::_1 > 0);

@@ -575,18 +575,6 @@ Widget::Widget(
 		[=] { searchCursorMoved(); },
 		Qt::QueuedConnection); // So getLastText() works already.
 
-	if (!Core::UpdaterDisabled()) {
-		Core::UpdateChecker checker;
-		rpl::merge(
-			rpl::single(rpl::empty),
-			checker.isLatest(),
-			checker.failed(),
-			checker.ready()
-		) | rpl::on_next([=] {
-			checkUpdateStatus();
-		}, lifetime());
-	}
-
 	_cancelSearch->setClickedCallback([=] {
 		cancelSearch({ .jumpBackToSearchedChat = true });
 	});
@@ -2817,8 +2805,7 @@ bool Widget::search(bool inCache, SearchRequestDelay delay) {
 }
 
 bool Widget::peerSearchRequired() const {
-	return !GetEnhancedBool("disable_global_search")
-		&& _searchState.filterChatsList() && !_openedForum;
+	return false;
 }
 
 bool Widget::searchForTopicsRequired(const QString &query) const {
