@@ -377,21 +377,6 @@ void MainWindow::createGlobalMenu() {
 
 	auto tools = psMainMenu->addMenu(tr::lng_linux_menu_tools(tr::now));
 
-	psContacts = tools->addAction(
-		tr::lng_mac_menu_contacts(tr::now),
-		crl::guard(this, [=] {
-			if (isHidden()) {
-				showFromTray();
-			}
-
-			if (!sessionController()) {
-				return;
-			}
-
-			sessionController()->show(
-				PrepareContactsBox(sessionController()));
-		}));
-
 	psAddContact = tools->addAction(
 		tr::lng_mac_menu_add_contact(tr::now),
 		this,
@@ -489,7 +474,6 @@ void MainWindow::updateGlobalMenuHook() {
 	ForceDisabled(psPaste, !canPaste);
 	ForceDisabled(psDelete, !canDelete);
 	ForceDisabled(psSelectAll, !canSelectAll);
-	ForceDisabled(psContacts, inactive || support);
 	ForceDisabled(psAddContact, inactive);
 	ForceDisabled(psNewGroup, inactive || support);
 	ForceDisabled(psNewChannel, inactive || support);

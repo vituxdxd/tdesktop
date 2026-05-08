@@ -1,4 +1,4 @@
-﻿/*
+/*
 This file is part of Telegram Desktop,
 the official desktop application for the Telegram messaging service.
 
@@ -705,12 +705,6 @@ void MainMenu::setupMenu() {
 			}
 		});
 
-		addAction(
-			tr::lng_menu_contacts(),
-			{ &st::menuIconProfile }
-		)->setClickedCallback([=] {
-			controller->show(PrepareContactsBox(controller));
-		});
 		addAction(
 			tr::lng_menu_calls(),
 			{ &st::menuIconPhone }

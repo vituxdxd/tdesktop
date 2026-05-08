@@ -46,7 +46,6 @@ private:
 	QAction *psPaste = nullptr;
 	QAction *psDelete = nullptr;
 	QAction *psSelectAll = nullptr;
-	QAction *psContacts = nullptr;
 	QAction *psAddContact = nullptr;
 	QAction *psNewGroup = nullptr;
 	QAction *psNewChannel = nullptr;

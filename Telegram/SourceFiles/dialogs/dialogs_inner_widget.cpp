@@ -4352,7 +4352,7 @@ void InnerWidget::refreshEmpty() {
 			st::dialogEmptyButton);
 		_emptyButton->setVisible(isListVisible);
 		_emptyButton->setClickedCallback([=, window = _controller] {
-			window->show(PrepareContactsBox(window));
+			window->showAddContact();
 		});
 		geometryValue() | rpl::on_next([=](const QRect &r) {
 			const auto top = r.height()
@@ -5573,10 +5573,6 @@ void InnerWidget::setupShortcuts() {
 				return true;
 			});
 
-		request->check(Command::ShowContacts) && request->handle([=] {
-			_controller->show(PrepareContactsBox(_controller));
-			return true;
-		});
 
 		if (session().supportMode() && row.key.history()) {
 			request->check(

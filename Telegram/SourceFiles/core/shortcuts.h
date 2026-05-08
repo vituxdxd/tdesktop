@@ -64,7 +64,6 @@ enum class Command {
 	ShowScheduled,
 
 	ShowArchive,
-	ShowContacts,
 
 	JustSendMessage,
 	SendSilentMessage,

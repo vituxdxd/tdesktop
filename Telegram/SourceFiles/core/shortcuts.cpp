@@ -120,7 +120,6 @@ const auto CommandByName = base::flat_map<QString, Command>{
 	{ u"last_folder"_q       , Command::ShowFolderLast },
 
 	{ u"show_archive"_q      , Command::ShowArchive },
-	{ u"show_contacts"_q     , Command::ShowContacts },
 
 	{ u"read_chat"_q         , Command::ReadChat },
 

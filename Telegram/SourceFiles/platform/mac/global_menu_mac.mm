@@ -77,7 +77,6 @@ private:
 	QAction *_paste = nullptr;
 	QAction *_delete = nullptr;
 	QAction *_selectAll = nullptr;
-	QAction *_contacts = nullptr;
 	QAction *_addContact = nullptr;
 	QAction *_newGroup = nullptr;
 	QAction *_newChannel = nullptr;
@@ -150,9 +149,6 @@ void Manager::retranslate() {
 	}
 	if (_delete) {
 		_delete->setText(tr::lng_mac_menu_delete(tr::now));
-	}
-	if (_contacts) {
-		_contacts->setText(tr::lng_mac_menu_contacts(tr::now));
 	}
 	if (_addContact) {
 		_addContact->setText(tr::lng_mac_menu_add_contact(tr::now));
@@ -266,7 +262,6 @@ void Manager::recomputeState() {
 	ForceDisabled(_paste, !canPaste);
 	ForceDisabled(_delete, !canDelete);
 	ForceDisabled(_selectAll, !canSelectAll);
-	ForceDisabled(_contacts, inactive || support);
 	ForceDisabled(_addContact, inactive);
 	ForceDisabled(_newGroup, inactive || support);
 	ForceDisabled(_newChannel, inactive || support);
@@ -483,16 +478,6 @@ void Manager::buildWindowMenu(QMenu *window) {
 	_fullScreen->setShortcutContext(Qt::WidgetShortcut);
 	window->addSeparator();
 
-	_contacts = window->addAction(u"Contacts"_q);
-	QObject::connect(_contacts, &QAction::triggered, _contacts, [this] {
-		withActiveWindow([](not_null<Window::Controller*> w) {
-			const auto sc = w->sessionController();
-			if (!sc || w->locked()) {
-				return;
-			}
-			sc->show(PrepareContactsBox(sc));
-		});
-	});
 	{
 		auto callback = [this] {
 			withActiveWindow([](not_null<Window::Controller*> w) {
@@ -576,7 +561,7 @@ void Manager::destroy() {
 	_menuBar.reset();
 	_languageBound = false;
 	_logout = _undo = _redo = _cut = _copy = _paste = _delete
-		= _selectAll = _contacts = _addContact = _newGroup
+		= _selectAll = _addContact = _newGroup
 		= _newChannel = _showTelegram = _fullScreen = _emoji
 		= _bold = _italic = _underline
 		= _strikeOut = _blockquote = _monospace = _clearFormat
